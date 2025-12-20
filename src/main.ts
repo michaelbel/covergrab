@@ -5,8 +5,9 @@ const urlInput = document.querySelector<HTMLInputElement>("#url-input");
 const downloadButton = document.querySelector<HTMLButtonElement>("#download-btn");
 const statusEl = document.querySelector<HTMLDivElement>("#status");
 const previewEl = document.querySelector<HTMLImageElement>("#preview");
+const cardEl = document.querySelector<HTMLElement>(".card");
 
-if (!urlInput || !downloadButton || !statusEl || !previewEl) {
+if (!urlInput || !downloadButton || !statusEl || !previewEl || !cardEl) {
   throw new Error("Required DOM elements not found");
 }
 
@@ -20,8 +21,12 @@ function setLoading(isLoading: boolean): void {
 }
 
 async function handleDownload(): Promise<void> {
-  previewEl.style.display = "none";
+  previewEl.classList.remove("is-visible");
   setStatus("");
+  cardEl.classList.add("is-animating");
+  window.setTimeout(() => {
+    cardEl.classList.remove("is-animating");
+  }, 420);
 
   const videoId = extractVideoId(urlInput.value);
   if (!videoId) {
@@ -41,7 +46,7 @@ async function handleDownload(): Promise<void> {
     }
 
     previewEl.src = best.url;
-    previewEl.style.display = "block";
+    previewEl.classList.add("is-visible");
 
     const filename = `youtube-${videoId}-${best.name}.jpg`;
 
