@@ -1,8 +1,8 @@
 :root {
   color-scheme: light;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  background: #f2f4f7;
-  color: #101828;
+  background: #f5f5f5;
+  color: #333;
 }
 
 * {
@@ -21,22 +21,18 @@ body {
 
 .card {
   background: #ffffff;
-  border-radius: 20px;
-  padding: 32px;
-  border: 1px solid #e4e7ec;
-  box-shadow:
-    0 14px 32px rgba(16, 24, 40, 0.08),
-    0 4px 10px rgba(16, 24, 40, 0.04);
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: grid;
-  gap: 32px;
+  gap: 0;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .card.is-animating {
   transform: scale(1.02);
-  box-shadow:
-    0 18px 36px rgba(16, 24, 40, 0.12),
-    0 6px 14px rgba(16, 24, 40, 0.08);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.14);
 }
 
 .row {
@@ -47,8 +43,8 @@ body {
 
 input {
   padding: 16px;
-  border-radius: 14px;
-  border: 1px solid #d0d5dd;
+  border-radius: 4px;
+  border: 1px solid #ddd;
   font-size: 16px;
   outline: none;
   background: #ffffff;
@@ -56,20 +52,20 @@ input {
 }
 
 input:focus {
-  border-color: #7f56d9;
-  box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.2);
+  border-color: #4285f4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
 }
 
 input.input-error {
-  border-color: #e11d48;
-  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.2);
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
 }
 
 button {
   padding: 16px;
-  border-radius: 14px;
+  border-radius: 4px;
   border: none;
-  background: #7f56d9;
+  background: #dc3545;
   color: #ffffff;
   font-size: 16px;
   font-weight: 600;
@@ -78,7 +74,7 @@ button {
 }
 
 button:hover {
-  background: #6941c6;
+  background: #c82333;
 }
 
 button:disabled {
@@ -88,9 +84,8 @@ button:disabled {
 }
 
 .status {
-  min-height: 22px;
   font-size: 15px;
-  color: #101828;
+  color: #333;
   white-space: pre-wrap;
 }
 
@@ -101,7 +96,7 @@ button:disabled {
 
   .card {
     padding: 24px;
-    border-radius: 14px;
+    border-radius: 8px;
   }
 
   .row {
