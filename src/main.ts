@@ -47,7 +47,7 @@ async function handleDownload(): Promise<void> {
 
     try {
       await downloadAsFile(best.url, filename);
-      setStatus(`Готово: ${best.name} (${filename})`);
+      setStatus("");
     } catch {
       openInNewTab(best.url);
       setStatus(

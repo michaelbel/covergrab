@@ -3,21 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>YouTube обложка в 1 клик</title>
+    <title>Thumbnail Downloader</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="container">
-      <header class="hero">
-        <p class="eyebrow">YouTube thumbnail downloader</p>
-        <h1>Обложка YouTube в 1 клик</h1>
-        <p class="subtitle">
-          Вставьте ссылку на видео, и мы автоматически выберем лучшее доступное качество превью.
-        </p>
-      </header>
-
       <section class="card" aria-label="Загрузка обложки">
-        <label class="label" for="url-input">Ссылка на YouTube видео</label>
         <div class="row">
           <input
             id="url-input"
@@ -26,12 +17,10 @@
             placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             autocomplete="off"
             inputmode="url"
+            aria-label="Ссылка на YouTube видео"
           />
           <button id="download-btn" type="button">Скачать</button>
         </div>
-        <p class="hint">
-          Поддерживаются youtube.com/watch?v=…, youtu.be/…, shorts/…, embed/… или просто videoId.
-        </p>
         <div id="status" class="status" role="status" aria-live="polite"></div>
         <img id="preview" alt="Предпросмотр обложки" />
       </section>
