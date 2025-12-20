@@ -2,27 +2,14 @@ const VIDEO_ID_REGEX = /^[a-zA-Z0-9_-]{11}$/;
 const urlInput = document.querySelector("#url-input");
 const downloadButton = document.querySelector("#download-btn");
 const statusEl = document.querySelector("#status");
-const previewEl = document.querySelector("#preview");
+const cardEl = document.querySelector(".card");
 
-if (!urlInput || !downloadButton || !statusEl || !previewEl) {
+if (!urlInput || !downloadButton || !statusEl || !cardEl) {
   throw new Error("Required DOM elements not found");
 }
 
 const setStatus = (message) => {
   statusEl.textContent = message;
-};
-
-let inputErrorTimeout = null;
-
-const flashInputError = () => {
-  urlInput.classList.add("input-error");
-  if (inputErrorTimeout) {
-    window.clearTimeout(inputErrorTimeout);
-  }
-  inputErrorTimeout = window.setTimeout(() => {
-    urlInput.classList.remove("input-error");
-    inputErrorTimeout = null;
-  }, 2000);
 };
 
 const setLoading = (isLoading) => {
@@ -140,13 +127,26 @@ const openInNewTab = (url) => {
 };
 
 const handleDownload = async () => {
-  previewEl.style.display = "none";
   setStatus("");
+  cardEl.classList.add("is-animating");
+  window.setTimeout(() => {
+    cardEl.classList.remove("is-animating");
+  }, 420);
 
   const videoId = extractVideoId(urlInput.value);
   if (!videoId) {
-    flashInputError();
+    setStatus(
+      "Не смог распознать ссылку или videoId.\nПример: https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    );
     return;
+  }
+
+  const fallbackWindow = window.open("about:blank", "_blank");
+  if (fallbackWindow) {
+    fallbackWindow.opener = null;
+    fallbackWindow.document.title = "Подготовка загрузки…";
+    fallbackWindow.document.body.innerHTML =
+      "<p style='font-family: sans-serif; padding: 24px;'>Готовлю обложку…</p>";
   }
 
   setLoading(true);
@@ -154,21 +154,26 @@ const handleDownload = async () => {
   try {
     const best = await pickBestThumbnail(videoId);
     if (!best) {
-      flashInputError();
+      setStatus("Не нашёл обложку для этого видео.");
+      fallbackWindow?.close();
       return;
     }
-
-    previewEl.src = best.url;
-    previewEl.style.display = "block";
 
     const filename = `youtube-${videoId}-${best.name}.jpg`;
 
     try {
       await downloadAsFile(best.url, filename);
       setStatus("");
+      fallbackWindow?.close();
     } catch {
-      openInNewTab(best.url);
-      flashInputError();
+      if (fallbackWindow) {
+        fallbackWindow.location.href = best.url;
+      } else {
+        openInNewTab(best.url);
+      }
+      setStatus(
+        `Открыл в новой вкладке: ${best.name}\nЕсли браузер не дал скачать автоматически — сохраните картинку вручную.`
+      );
     }
   } finally {
     setLoading(false);
