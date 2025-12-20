@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  background: #f5f7fb;
+  background: #ffebee;
   color: #101828;
 }
 
@@ -20,13 +20,19 @@ body {
 }
 
 .card {
-  background: #ffffff;
-  border-radius: 16px;
+  background: #ffcdd2;
+  border-radius: 20px;
   padding: 32px;
-  border: 1px solid #eaecf0;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  border: 1px solid #f8b4b4;
+  box-shadow: 0 18px 40px rgba(93, 20, 26, 0.15);
   display: grid;
   gap: 16px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card.is-animating {
+  transform: scale(1.02);
+  box-shadow: 0 24px 55px rgba(93, 20, 26, 0.2);
 }
 
 .row {
@@ -36,7 +42,7 @@ body {
 }
 
 input {
-  padding: 16px 18px;
+  padding: 16px;
   border-radius: 14px;
   border: 1px solid #d0d5dd;
   font-size: 16px;
@@ -56,20 +62,19 @@ input.input-error {
 }
 
 button {
-  padding: 16px 24px;
+  padding: 16px;
   border-radius: 14px;
   border: none;
-  background: #ff0000;
+  background: #ef5350;
   color: #ffffff;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
 button:hover {
-  transform: translateY(-1px);
-  background: #cc0000;
+  background: #e53935;
 }
 
 button:disabled {
@@ -86,10 +91,24 @@ button:disabled {
 }
 
 #preview {
-  display: none;
+  display: block;
   width: 100%;
   border-radius: 18px;
   border: 1px solid #e4e7ec;
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(8px) scale(0.98);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    max-height 0.4s ease;
+  overflow: hidden;
+}
+
+#preview.is-visible {
+  opacity: 1;
+  max-height: 520px;
+  transform: translateY(0) scale(1);
 }
 
 @media (max-width: 640px) {
