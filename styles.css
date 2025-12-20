@@ -14,48 +14,19 @@ body {
 }
 
 .container {
-  max-width: 860px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 48px 20px 80px;
-}
-
-.hero {
-  display: grid;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 12px;
-  color: #475467;
-  margin: 0;
-}
-
-h1 {
-  font-size: clamp(32px, 4vw, 44px);
-  margin: 0;
-}
-
-.subtitle {
-  margin: 0;
-  font-size: 18px;
-  color: #475467;
-  max-width: 640px;
+  padding: 56px 20px 96px;
 }
 
 .card {
   background: #ffffff;
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid #eaecf0;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
   display: grid;
   gap: 16px;
-}
-
-.label {
-  font-weight: 600;
 }
 
 .row {
@@ -65,12 +36,13 @@ h1 {
 }
 
 input {
-  padding: 14px 16px;
-  border-radius: 12px;
+  padding: 16px 18px;
+  border-radius: 14px;
   border: 1px solid #d0d5dd;
   font-size: 16px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 input:focus {
@@ -79,33 +51,26 @@ input:focus {
 }
 
 button {
-  padding: 14px 20px;
-  border-radius: 12px;
+  padding: 16px 24px;
+  border-radius: 14px;
   border: none;
   background: #7f56d9;
   color: #ffffff;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
 }
 
 button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(127, 86, 217, 0.25);
+  background: #6941c6;
 }
 
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  box-shadow: none;
   transform: none;
-}
-
-.hint {
-  margin: 0;
-  color: #667085;
-  font-size: 14px;
 }
 
 .status {
@@ -118,11 +83,20 @@ button:disabled {
 #preview {
   display: none;
   width: 100%;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 1px solid #e4e7ec;
 }
 
 @media (max-width: 640px) {
+  .container {
+    padding: 40px 16px 72px;
+  }
+
+  .card {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
   .row {
     grid-template-columns: 1fr;
   }
