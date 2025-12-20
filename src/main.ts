@@ -4,10 +4,9 @@ import { extractVideoId, pickBestThumbnail } from "./youtube";
 const urlInput = document.querySelector<HTMLInputElement>("#url-input");
 const downloadButton = document.querySelector<HTMLButtonElement>("#download-btn");
 const statusEl = document.querySelector<HTMLDivElement>("#status");
-const previewEl = document.querySelector<HTMLImageElement>("#preview");
 const cardEl = document.querySelector<HTMLElement>(".card");
 
-if (!urlInput || !downloadButton || !statusEl || !previewEl || !cardEl) {
+if (!urlInput || !downloadButton || !statusEl || !cardEl) {
   throw new Error("Required DOM elements not found");
 }
 
@@ -21,7 +20,6 @@ function setLoading(isLoading: boolean): void {
 }
 
 async function handleDownload(): Promise<void> {
-  previewEl.classList.remove("is-visible");
   setStatus("");
   cardEl.classList.add("is-animating");
   window.setTimeout(() => {
@@ -44,9 +42,6 @@ async function handleDownload(): Promise<void> {
       setStatus("Не нашёл обложку для этого видео.");
       return;
     }
-
-    previewEl.src = best.url;
-    previewEl.classList.add("is-visible");
 
     const filename = `youtube-${videoId}-${best.name}.jpg`;
 
