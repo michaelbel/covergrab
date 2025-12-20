@@ -10,6 +10,7 @@ export async function downloadAsFile(url: string, filename: string): Promise<voi
 
   link.href = objectUrl;
   link.download = filename;
+  link.target = "_self";
   document.body.appendChild(link);
   link.click();
   link.remove();

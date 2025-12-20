@@ -14,6 +14,11 @@ function setStatus(message: string): void {
   statusEl.textContent = message;
 }
 
+function setInputError(hasError: boolean): void {
+  urlInput.classList.toggle("input-error", hasError);
+  urlInput.setAttribute("aria-invalid", hasError ? "true" : "false");
+}
+
 function setLoading(isLoading: boolean): void {
   downloadButton.disabled = isLoading;
   downloadButton.textContent = isLoading ? "Скачиваю…" : "Скачать";
@@ -21,6 +26,7 @@ function setLoading(isLoading: boolean): void {
 
 async function handleDownload(): Promise<void> {
   setStatus("");
+  setInputError(false);
   cardEl.classList.add("is-animating");
   window.setTimeout(() => {
     cardEl.classList.remove("is-animating");
@@ -28,9 +34,7 @@ async function handleDownload(): Promise<void> {
 
   const videoId = extractVideoId(urlInput.value);
   if (!videoId) {
-    setStatus(
-      "Не смог распознать ссылку или videoId.\nПример: https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    );
+    setInputError(true);
     return;
   }
 
@@ -59,6 +63,9 @@ async function handleDownload(): Promise<void> {
 }
 
 downloadButton.addEventListener("click", handleDownload);
+urlInput.addEventListener("input", () => {
+  setInputError(false);
+});
 urlInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     handleDownload();
