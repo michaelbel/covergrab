@@ -1,4 +1,4 @@
-import { downloadAsFile, openInNewTab } from "./download";
+import { downloadAsFile } from "./download";
 import { extractVideoId, pickBestThumbnail } from "./youtube";
 
 const urlInput = document.querySelector<HTMLInputElement>("#url-input");
@@ -34,21 +34,12 @@ async function handleDownload(): Promise<void> {
     return;
   }
 
-  const fallbackWindow = window.open("about:blank", "_blank");
-  if (fallbackWindow) {
-    fallbackWindow.opener = null;
-    fallbackWindow.document.title = "Подготовка загрузки…";
-    fallbackWindow.document.body.innerHTML =
-      "<p style='font-family: sans-serif; padding: 24px;'>Готовлю обложку…</p>";
-  }
-
   setLoading(true);
 
   try {
     const best = await pickBestThumbnail(videoId);
     if (!best) {
       setStatus("Не нашёл обложку для этого видео.");
-      fallbackWindow?.close();
       return;
     }
 
@@ -57,15 +48,9 @@ async function handleDownload(): Promise<void> {
     try {
       await downloadAsFile(best.url, filename);
       setStatus("");
-      fallbackWindow?.close();
     } catch {
-      if (fallbackWindow) {
-        fallbackWindow.location.href = best.url;
-      } else {
-        openInNewTab(best.url);
-      }
       setStatus(
-        `Открыл в новой вкладке: ${best.name}\nЕсли браузер не дал скачать автоматически — сохраните картинку вручную.`,
+        `Не удалось скачать автоматически. Откройте ссылку вручную: ${best.url}`,
       );
     }
   } finally {
