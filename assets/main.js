@@ -12,6 +12,19 @@ const setStatus = (message) => {
   statusEl.textContent = message;
 };
 
+let inputErrorTimeout = null;
+
+const flashInputError = () => {
+  urlInput.classList.add("input-error");
+  if (inputErrorTimeout) {
+    window.clearTimeout(inputErrorTimeout);
+  }
+  inputErrorTimeout = window.setTimeout(() => {
+    urlInput.classList.remove("input-error");
+    inputErrorTimeout = null;
+  }, 2000);
+};
+
 const setLoading = (isLoading) => {
   downloadButton.disabled = isLoading;
   downloadButton.textContent = isLoading ? "Скачиваю…" : "Скачать";
@@ -132,9 +145,7 @@ const handleDownload = async () => {
 
   const videoId = extractVideoId(urlInput.value);
   if (!videoId) {
-    setStatus(
-      "Не смог распознать ссылку или videoId.\nПример: https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    );
+    flashInputError();
     return;
   }
 
@@ -143,7 +154,7 @@ const handleDownload = async () => {
   try {
     const best = await pickBestThumbnail(videoId);
     if (!best) {
-      setStatus("Не нашёл обложку для этого видео.");
+      flashInputError();
       return;
     }
 
@@ -157,9 +168,7 @@ const handleDownload = async () => {
       setStatus("");
     } catch {
       openInNewTab(best.url);
-      setStatus(
-        `Открыл в новой вкладке: ${best.name}\nЕсли браузер не дал скачать автоматически — сохраните картинку вручную.`,
-      );
+      flashInputError();
     }
   } finally {
     setLoading(false);

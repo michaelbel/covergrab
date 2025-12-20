@@ -21,10 +21,10 @@ body {
 
 .card {
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 16px;
   padding: 32px;
   border: 1px solid #eaecf0;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
   display: grid;
   gap: 16px;
 }
@@ -50,11 +50,16 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.2);
 }
 
+input.input-error {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.2);
+}
+
 button {
   padding: 16px 24px;
   border-radius: 14px;
   border: none;
-  background: #7f56d9;
+  background: #ff0000;
   color: #ffffff;
   font-size: 16px;
   font-weight: 600;
@@ -64,7 +69,7 @@ button {
 
 button:hover {
   transform: translateY(-1px);
-  background: #6941c6;
+  background: #cc0000;
 }
 
 button:disabled {
@@ -94,7 +99,7 @@ button:disabled {
 
   .card {
     padding: 24px;
-    border-radius: 20px;
+    border-radius: 14px;
   }
 
   .row {
