@@ -16,7 +16,3 @@ export async function downloadAsFile(url: string, filename: string): Promise<voi
 
   URL.revokeObjectURL(objectUrl);
 }
-
-export function openInNewTab(url: string): void {
-  window.open(url, "_blank", "noopener,noreferrer");
-}
