@@ -89,6 +89,13 @@ button:disabled {
   white-space: pre-wrap;
 }
 
+.description {
+  margin: 16px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #444;
+}
+
 @media (max-width: 640px) {
   .container {
     padding: 40px 16px 72px;
