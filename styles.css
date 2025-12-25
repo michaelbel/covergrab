@@ -69,7 +69,7 @@ button {
   background: #dc3545;
   color: #ffffff;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease, opacity 0.2s ease;
 }
@@ -93,8 +93,8 @@ button:disabled {
 .description {
   margin: 16px 0 0;
   padding: 0 24px;
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.4;
   color: #6b7280;
 }
 
