@@ -1,6 +1,6 @@
 [![last-commit](https://img.shields.io/github/last-commit/michaelbel/covergrab?style=for-the-badge&logo=github&labelColor=3F464F)](https://github.com/michaelbel/covergrab/commits)
 
-Проект для скачивания превью YouTube‑видео в лучшем доступном качестве.
+Сервис для скачивания обложки YouTube-видео по ссылке: вставляешь URL, нажимаешь кнопку и получаешь изображение в максимально доступном качестве.
 
 <div align="left">
     <img src="cover.png" width="60%" alt="Cover">
