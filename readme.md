@@ -3,7 +3,7 @@
 Сервис для скачивания обложки YouTube-видео по ссылке: вставляешь URL, нажимаешь кнопку и получаешь изображение в максимально доступном качестве.
 
 <div align="left">
-    <img src="cover.png" width="60%" alt="Cover">
+    <img src="cover.png" width="80%" alt="Cover">
 </div>
 
 ## Technologies
