@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -120,7 +120,7 @@
   </head>
   <body>
     <main class="container">
-      <section class="card" aria-label="Загрузка обложки">
+      <section class="card" aria-label="Thumbnail downloader">
         <div class="row">
           <input
             id="url-input"
@@ -129,9 +129,9 @@
             placeholder="https://youtu.be/dQw4w9WgXcQ"
             autocomplete="off"
             inputmode="url"
-            aria-label="Ссылка на YouTube видео"
+            aria-label="YouTube video URL"
           />
-          <button id="download-btn" type="button">Скачать</button>
+          <button id="download-btn" type="button">Download</button>
         </div>
         <div id="status" class="status" role="status" aria-live="polite"></div>
       </section>
@@ -269,7 +269,7 @@
 
       function setLoading(isLoading) {
         downloadButton.disabled = isLoading;
-        downloadButton.textContent = isLoading ? "Скачиваю…" : "Скачать";
+        downloadButton.textContent = isLoading ? "Downloading…" : "Download";
       }
 
       async function handleDownload() {
@@ -291,7 +291,7 @@
         try {
           const best = await pickBestThumbnail(videoId);
           if (!best) {
-            setStatus("Не нашёл обложку для этого видео.");
+            setStatus("No thumbnail found for this video.");
             return;
           }
 
@@ -302,7 +302,7 @@
             setStatus("");
           } catch {
             setStatus(
-              `Не удалось скачать автоматически. Откройте ссылку вручную: ${best.url}`,
+              `Could not download automatically. Open the link manually: ${best.url}`,
             );
           }
         } finally {

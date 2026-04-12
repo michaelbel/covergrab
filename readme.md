@@ -1,6 +1,6 @@
 [![last-commit](https://img.shields.io/github/last-commit/michaelbel/covergrab?style=for-the-badge&logo=github&labelColor=3F464F)](https://github.com/michaelbel/covergrab/commits)
 
-Сервис для скачивания обложки YouTube-видео по ссылке: вставляешь URL, нажимаешь кнопку и получаешь изображение в максимально доступном качестве.
+A service for downloading YouTube video thumbnails by URL: paste a link, click the button, and get the image in the highest available quality.
 
 <div align="left">
     <img src="cover.png" alt="Cover">
